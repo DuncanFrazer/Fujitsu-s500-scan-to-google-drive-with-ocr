@@ -1,0 +1,2 @@
+/home/pi/scans/_to_be_ocred	IN_MOVED_TO	ocrmypdf $@/$# $@/$# && mv $@/$# /home/pi/scans/_to_mv_to_gdrive
+/home/pi/scans/_to_mv_to_gdrive	IN_MOVED_TO	test -d /home/pi/mnt/gdrive/_to_be_sorted && mv /home/pi/scans/_to_mv_to_gdrive/* /home/pi/mnt/gdrive/_to_be_sorted

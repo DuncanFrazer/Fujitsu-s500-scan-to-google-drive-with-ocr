@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# don't forget to create the folder
+scan_dir=/home/pi/scans
+datetime=`date +%F_%H%M%S`
+
+case $SCANBD_ACTION in
+  scan)
+    logger -t "scanbd: $0" "$SCANBD_DEVICE $SCANBD_ACTION - scanning --resolution 150 --mode Color --depth 8 --format=tiff to $scan_dir/$filename.jpg"
+    cd $scan_dir
+    mkdir $datetime
+    cd $datetime
+    scanimage -d fujitsu --page-width 210.306 --page-height 297.29 --source "ADF Duplex" --batch="$datetime-%03d.jpeg" --resolution 150 --mode Color --format=jpeg  --brightness 5 --contrast 20
+    img2pdf *.jpeg > $datetime.pdf
+    mv $datetime.pdf ../_to_be_ocred
+    cd ..
+    rm -r $datetime
+    logger -t "scanbd: $0" "Finished scanning"
+    ;;
+esac
+
