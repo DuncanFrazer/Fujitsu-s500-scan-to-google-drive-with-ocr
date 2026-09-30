@@ -12,6 +12,7 @@ case $SCANBD_ACTION in
     cd $datetime
     scanimage -d fujitsu --page-width 210.306 --page-height 297.29 --source "ADF Duplex" --batch="$datetime-%03d.jpeg" --resolution 150 --mode Color --format=jpeg  --brightness 5 --contrast 20
     img2pdf *.jpeg > $datetime.pdf
+    chmod 666 $datetime.pdf
     mv $datetime.pdf ../_to_be_ocred
     cd ..
     rm -r $datetime
